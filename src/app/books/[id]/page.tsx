@@ -29,7 +29,13 @@ export default async function BookPage({ params }: PageProps) {
   );
 
   const pageElements = pages.map((p, idx) => (
-    <div key={idx} className="p-4 whitespace-pre-wrap">{p}</div>
+    <div
+      key={idx}
+      className="p-8 text-xl leading-relaxed"
+      style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
+    >
+      {p}
+    </div>
   ));
 
   return <VerticalBook pages={[cover, ...pageElements]} />;

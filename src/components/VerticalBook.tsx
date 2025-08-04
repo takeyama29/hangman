@@ -1,22 +1,43 @@
-import React from 'react';
+'use client';
+
+import { FC, ReactNode } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation, EffectCreative } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-creative';
 
 interface VerticalBookProps {
-  pages: React.ReactNode[];
+  pages: ReactNode[];
 }
 
-/**
- * A simple vertical book component that renders a series of pages.
- * Each page is rendered in a vertical stack that can be styled for
- * page turning animations.
- */
-export default function VerticalBook({ pages }: VerticalBookProps) {
+const VerticalBook: FC<VerticalBookProps> = ({ pages }) => {
   return (
-    <div className="vertical-book">
+    <Swiper
+      modules={[Pagination, Navigation, EffectCreative]}
+      pagination={{ clickable: true }}
+      navigation
+      effect="creative"
+      creativeEffect={{
+        prev: {
+          shadow: true,
+          translate: [0, 0, -400],
+        },
+        next: {
+          translate: ['100%', 0, 0],
+        },
+      }}
+      className="w-full h-screen"
+      dir="rtl"
+    >
       {pages.map((page, index) => (
-        <div key={index} className="page">
-          {page}
-        </div>
+        <SwiperSlide key={index}>{page}</SwiperSlide>
       ))}
-    </div>
+    </Swiper>
   );
-}
+};
+
+export default VerticalBook;
+
