@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, EffectCreative } from 'swiper/modules';
 
@@ -13,7 +13,7 @@ interface VerticalBookProps {
   pages: ReactNode[];
 }
 
-const VerticalBook: FC<VerticalBookProps> = ({ pages }) => {
+export default function VerticalBook({ pages }: VerticalBookProps) {
   return (
     <Swiper
       modules={[Pagination, Navigation, EffectCreative]}
@@ -37,7 +37,5 @@ const VerticalBook: FC<VerticalBookProps> = ({ pages }) => {
       ))}
     </Swiper>
   );
-};
-
-export default VerticalBook;
+}
 
